@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Users can READ their own profile/chats. Plan, limits, credits and chat writes are
+    // server-only (Admin SDK bypasses rules), so a modified app can't grant itself Premium.
+    match /users/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+      allow update: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['displayName'])
+        && request.resource.data.displayName is string
+        && request.resource.data.displayName.size() > 0
+        && request.resource.data.displayName.size() <= 60;
+      allow create, delete: if false;
+
+      match /chats/{chatId} {
+        allow read: if request.auth != null && request.auth.uid == uid;
+        allow write: if false;
+        match /messages/{messageId} {
+          allow read: if request.auth != null && request.auth.uid == uid;
+          allow write: if false;
+        }
+      }
+    }
+
+    // purchaseTokens, rewardTx, reports: backend only.
+    match /{other=**} { allow read, write: if false; }
+  }
+}

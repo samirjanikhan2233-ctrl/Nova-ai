@@ -1,0 +1,14 @@
+{
+  "name": "nova-ai-functions",
+  "private": true,
+  "main": "lib/index.js",
+  "engines": { "node": "22" },
+  "scripts": { "build": "tsc", "deploy": "firebase deploy --only functions" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest",
+    "firebase-admin": "^13.0.0",
+    "firebase-functions": "^6.3.0",
+    "googleapis": "latest"
+  },
+  "devDependencies": { "@types/node": "^22.0.0", "typescript": "^5.6.0" }
+}

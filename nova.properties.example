@@ -1,0 +1,8 @@
+# Copy to nova.properties (git-ignored). Values from AdMob console + your hosted legal pages.
+ADMOB_APP_ID=ca-app-pub-XXXXXXXXXXXXXXXX~YYYYYYYYYY
+AD_BANNER_ID=ca-app-pub-XXXXXXXXXXXXXXXX/1111111111
+AD_INTERSTITIAL_ID=ca-app-pub-XXXXXXXXXXXXXXXX/2222222222
+AD_REWARDED_ID=ca-app-pub-XXXXXXXXXXXXXXXX/3333333333
+PRIVACY_URL=https://YOUR-DOMAIN/privacy.html
+TERMS_URL=https://YOUR-DOMAIN/terms.html
+SUPPORT_EMAIL=support@YOUR-DOMAIN
